@@ -20,6 +20,7 @@ public class Fells {
 		  this.width = width;
 		  this.height = height;
 		  this.collisionBox = new Rectangle(x,y,width, height);
+		  speed = 10;
 	 }
 	 
 	 void update() {
@@ -29,9 +30,9 @@ public class Fells {
 	 
 	 void draw(Graphics g) {
 		 
-				g.setColor(Color.YELLOW);
+				g.setColor(Color.RED);
 	        g.fillRect(x, y, width, height);
-			
+	        
 	        
 	 }
 }

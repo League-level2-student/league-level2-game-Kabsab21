@@ -22,7 +22,15 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 	Font TitleFont = new Font("Arial", Font.PLAIN, 30);
 	Font TextFont = new Font("Arial", Font.PLAIN, 20);
 	Player plays = new Player(250,700, 100, 100);
+	Timer fallexisting;
+	ManageObjects bang = new ManageObjects(plays);
 	
+	void startGame(){
+	    fallexisting = new Timer(1000 , bang );
+	    fallexisting.start();
+	}
+
+
 	Panelgame(){
 		
 		frameDraw = new Timer(1000/60,this);
@@ -48,6 +56,10 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 	}
 	void updateGameState() {  
 		currentState = GAME;
+		bang.update();
+		if( plays.isActive == false) {
+			updateEndState();
+		}
 		
 	}
 	void updateLarnState() {  
@@ -68,9 +80,11 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 		g.drawString("Press enter to start", 150, 300);
 	}
 	void drawGameState(Graphics g) { 
+		
 		g.setColor(Color.ORANGE);
 		g.fillRect(0, 0,Game.WIDTH, Game.HEIGHT);
 		plays.draw(g);
+		bang.draw(g);
 	}
 	void drawLarnState(Graphics g) { 
 		g.setColor(Color.magenta);
@@ -101,7 +115,8 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 
 		    if (currentState == END) {
 		    	 plays = new Player(250,700, 100, 100);
-		        currentState = MENU;          
+		        currentState = MENU;   
+		        bang = new ManageObjects(plays);
 		    }else {
 		        currentState++;
 		    }

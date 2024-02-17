@@ -7,7 +7,7 @@ public class Game {
 	JFrame frame = new JFrame();
 	public final static int WIDTH = 500;
 	public final static int HEIGHT = 800;
-	Panelgame punal = new Panelgame();
+	Panelgame punal;
 	
 	public static void main(String[] args) {
 		Game objew = new Game();
