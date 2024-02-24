@@ -6,11 +6,13 @@ import java.awt.Rectangle;
 
 public class Player {
 
-	 int x;
+	 
+	int x;
 	 int y;
 	 int width;
 	 int height;
 	 int speed = 0;
+	 
 	 Boolean isActive = true;
 	 Rectangle collisionBox;
 	 
@@ -33,6 +35,7 @@ public class Player {
 	 }
 	 
 	 void left() {
+		
 		  x-=speed;
 		  if( x > 500 ) {
 			  x = 499;
@@ -42,6 +45,7 @@ public class Player {
 		  }
 	 }
 	 void right() {
+		
 		  x+=speed;
 		  
 		  if( x > 400 ) {
@@ -51,4 +55,5 @@ public class Player {
 			  x = 1;
 		  }
 	 }
+	
 }

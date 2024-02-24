@@ -26,7 +26,8 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 	ManageObjects bang = new ManageObjects(plays);
 	
 	void startGame(){
-	    fallexisting = new Timer(1000 , bang );
+	    fallexisting = new Timer(4000 , bang );
+	    
 	    fallexisting.start();
 	}
 
@@ -37,7 +38,7 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 	    frameDraw.start();
 	   
 	}
-	
+	@Override
 	public void paintComponent(Graphics g){
 		if(currentState == MENU){
 		    drawMenuState(g);
@@ -85,6 +86,8 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 		g.fillRect(0, 0,Game.WIDTH, Game.HEIGHT);
 		plays.draw(g);
 		bang.draw(g);
+		g.setFont(TextFont);
+		g.drawString("Score: "+bang.getScore(), 50, 50);
 	}
 	void drawLarnState(Graphics g) { 
 		g.setColor(Color.magenta);
@@ -112,7 +115,7 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
-
+			startGame();
 		    if (currentState == END) {
 		    	 plays = new Player(250,700, 100, 100);
 		        currentState = MENU;   

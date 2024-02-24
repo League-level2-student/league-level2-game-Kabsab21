@@ -3,10 +3,12 @@ package Game;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ManageObjects implements ActionListener {
+public class ManageObjects implements ActionListener, KeyListener {
 	Player player;
 	ArrayList<Fells> felli = new  ArrayList<Fells>();
 	Random random = new Random();
@@ -22,6 +24,7 @@ public class ManageObjects implements ActionListener {
 }
  
  void checkCollison() {
+	
 		for( int i = felli.size()-1; i >= 0; i-- ) {
 			Fells ij = (Fells) felli.get(i);
 			if(player.collisionBox.intersects(ij.collisionBox) == true) {
@@ -29,6 +32,7 @@ public class ManageObjects implements ActionListener {
 				score++;
 				System.out.println("notactivesss");
 			}
+		
 		}
 	}
  
@@ -53,14 +57,13 @@ public class ManageObjects implements ActionListener {
  }
  
  void update() {
+	
 		checkCollison();
 		purgeObjects();
 	}
 
 	 void draw(Graphics g){
 		 player.draw(g);
-		
-		 System.out.println("drawn in MO");
 		 player.update();
 		 kindaneedmetyhodIguess(g);
 	}
@@ -79,8 +82,30 @@ public class ManageObjects implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		System.out.println("Fell added");
 		// TODO Auto-generated method stub
 		addFell();
+	}
+
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

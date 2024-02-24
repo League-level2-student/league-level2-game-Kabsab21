@@ -20,7 +20,7 @@ public class Fells {
 		  this.width = width;
 		  this.height = height;
 		  this.collisionBox = new Rectangle(x,y,width, height);
-		  speed = 10;
+		  speed = 5;
 	 }
 	 
 	 void update() {
