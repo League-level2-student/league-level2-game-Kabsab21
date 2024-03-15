@@ -21,7 +21,7 @@ public class Player {
 		  this.y = y;
 		  this.width = width;
 		  this.height = height;
-		  speed = 10;
+		  speed = 50;
 		  this.collisionBox = new Rectangle(x,y,width, height);
 	 }
 	 
