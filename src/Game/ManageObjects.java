@@ -29,14 +29,7 @@ public class ManageObjects implements ActionListener, KeyListener {
 
 		for( int i = felli.size()-1; i >-1 ; i-- ) {
 			Fells ij = (Fells) felli.get(i);
-
-			if(ij.y > Game.HEIGHT) {
-				lose = true;
-				ij.isActive = false;
-			} else {
-				lose = false;
-			}
-			System.out.println("Checkin if collided");
+			
 
 			if(player.collisionBox.intersects(ij.collisionBox) == true) {
 
@@ -45,12 +38,20 @@ public class ManageObjects implements ActionListener, KeyListener {
 				System.out.println(score);
 
 			}
+			
+			if(ij.y > Game.HEIGHT) {
+				lose = true;
+				ij.isActive = false;
+			} else {
+				lose = false;
+			}
 
 		}
 	}
+	
 
 	void addFell() {
-		felli.add(new Fells(random.nextInt(Game.WIDTH),0,50,50));
+		felli.add(new Fells(random.nextInt(Game.WIDTH -10),0,50,50));
 	}
 
 	//Focus for next class. Make sure commands are correct. 
@@ -70,7 +71,7 @@ public class ManageObjects implements ActionListener, KeyListener {
 	}
 
 	void update() {
-		System.out.println("checUpdate being called");
+		//System.out.println("checUpdate being called");
 		checkCollison();
 		purgeObjects();
 	}
@@ -82,7 +83,7 @@ public class ManageObjects implements ActionListener, KeyListener {
 	}
 
 	void purgeObjects() {
-		for( int i = felli.size()-1; i > 0; i-- ) {
+		for( int i = felli.size()-1; i >= 0; i-- ) {
 			Fells ij = (Fells) felli.get(i);
 			if( ij.isActive == false) {
 				felli.remove(i);
@@ -95,9 +96,10 @@ public class ManageObjects implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("Fell added");
+		
 		// TODO Auto-generated method stub
 		addFell();
+	//	System.out.println("Fell added");
 	}
 
 

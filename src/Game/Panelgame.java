@@ -19,14 +19,14 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 	public final int END = 3;
 	Timer frameDraw ;
 	int currentState = 0;
-	Font TitleFont = new Font("Arial", Font.PLAIN, 30);
+	Font TitleFont = new Font("Arial", Font.BOLD, 30);
 	Font TextFont = new Font("Arial", Font.PLAIN, 20);
 	Player plays = new Player(250,700, 100, 100);
 	Timer fallexisting;
 	ManageObjects bang = new ManageObjects(plays);
 	
 	void startGame(){
-	    fallexisting = new Timer(4000, bang );
+	    fallexisting = new Timer(1000, bang );
 	    
 	    fallexisting.start();
 	    
@@ -58,7 +58,7 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 	}
 	void updateGameState() {  
 		currentState = GAME;
-		System.out.println("Update beiong called from update game state");
+	
 		bang.update();
 		if( ManageObjects.lose == true ) {
 	    	updateEndState();
@@ -74,13 +74,13 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 
 	}
 	void drawMenuState(Graphics g) { 
-		g.setColor(Color.cyan);
+		g.setColor(Color.ORANGE);
 		g.fillRect(0, 0,Game.WIDTH, Game.HEIGHT);
 		g.setFont(TitleFont);
 		g.setColor(Color.BLUE);
-		g.drawString("cool game title name thingy", 100, 200);
+		g.drawString("THE COOL GAME THINGY", 70, 200);
 		g.setFont(TextFont);
-		g.drawString("Press enter to start", 150, 300);
+		g.drawString("Press enter to start", 165, 250);
 	}
 	void drawGameState(Graphics g) { 
 		
@@ -93,19 +93,28 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 		  
 	}
 	void drawLarnState(Graphics g) { 
-		g.setColor(Color.magenta);
+		g.setColor(Color.orange);
 		g.fillRect(0, 0,Game.WIDTH, Game.HEIGHT);
 		g.setColor(Color.BLUE);
-		g.drawString("      how play", 100, 200);
-		
+		g.setFont(TitleFont);
+		g.drawString("HOW TO PLAY:", 40, 100);
+		g.setFont(TextFont);
+		g.drawString("- Use <- and -> to move", 70, 150);
+		g.drawString("- Attempt to catch the fallen items ", 70, 200);
+		g.drawString("- If you fail to catch a item you lose", 70, 250);
+		g.drawString("- For every Item you catch you get one point", 70, 300);
+		g.drawString("--> press enter to play", 200, 350);
+	
 	}
 	void drawEndState(Graphics g)  {  
-		g.setColor(Color.GRAY);
+		g.setColor(Color.BLUE);
 		g.fillRect(0, 0,Game.WIDTH, Game.HEIGHT);
 		g.setFont(TitleFont);
-		g.setColor(Color.BLUE);
-		g.drawString("      GAME LOST???", 100, 200);
-		
+		g.setColor(Color.orange);
+		g.drawString("GAME LOST!!", 150, 200);
+		g.setFont(TextFont);
+		g.drawString("Score: "+bang.getScore(), 165, 250);
+		g.drawString("Press enter to restart.", 165, 300);
 	}
 
 	@Override
@@ -118,7 +127,9 @@ public class Panelgame extends JPanel implements ActionListener, KeyListener{
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+		    if (currentState == LARN) {
 			startGame();
+		    }
 			
 		    if (currentState == END) {
 		    	ManageObjects.lose = false;
